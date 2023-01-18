@@ -1,0 +1,21 @@
+#logOut:hover {
+    color: #FFF !important;
+}
+
+#logOut {
+    background: #040b14;
+    color: #a8a9b4;
+    border: none
+}
+
+table,
+td,
+th {
+    border: 1px solid black !important;
+    border-collapse: collapse !important;
+}
+
+td,
+th {
+    padding: 0.2em;
+}

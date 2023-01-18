@@ -1,0 +1,1 @@
+a:1:{s:9:"paco paco";a:6:{s:6:"ciudad";s:8:"Valencia";s:6:"nombre";s:4:"paco";s:9:"apellidos";s:4:"paco";s:4:"fnac";s:10:"2022-11-03";s:5:"tlfno";s:9:"896589635";s:4:"mail";s:13:"paco@paco.com";}}
