@@ -1,0 +1,45 @@
+<p>Name Enemy: {{monster.name | titlecase}}</p>
+<p>Health Enemy: {{monster.health}}</p>
+<p>Attack Enemy: {{monster.attack}}</p>
+<!--<p>Datos monstruo:{{monster | json}}</p>-->
+<img src="../../../assets/images/{{monster.name}}.png" alt="Imagen del monstruo {{monster.name}}">
+<br>
+<button (click)="lightAttack()">Light Attack</button>
+<button (click)="mediumAttack()">Medium Attack</button>
+<button (click)="heavyAttack()">Heavy Attack</button>
+<button (click)="getInventoryItem()">Item</button>
+
+<!--<p>Datos Jugador: {{character | json}}</p>-->
+<p>Name Player:{{character.name | titlecase}}</p>
+<p>Health Player : {{vidaPersonaje}}</p>
+<p>Attack Player: {{fuerzaPersonaje}}</p>
+<p>Luck Player: {{suertePersonaje}}</p>
+
+<div *ngIf="resultado; else resultado0">
+    {{resultado}}
+</div>
+
+<ng-template #resultado0>
+    0 de daño
+</ng-template>
+<br><br>
+
+<div *ngIf="InventoryItems">
+
+    <table> 
+        <tr *ngFor="let InventoryItem of InventoryItems">
+          <!-- <ng-container *ngIf="!producto.privado"> -->
+           
+          <td>{{ InventoryItem.name }} - Cantidad: {{ InventoryItem.quantity }}</td>
+
+          <td><button (click)="usarItem(InventoryItem._id)"> Usar</button></td>
+          
+    
+          
+          <!-- </ng-container> -->
+        </tr>
+      </table>
+</div>
+
+
+<!--<p>Datos monstruo:{{monster | json}}</p>-->

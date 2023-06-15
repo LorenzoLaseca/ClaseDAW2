@@ -1,0 +1,14 @@
+<h2>Crear Cuenta de Juego</h2>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <label for="name">Name: </label>
+  <input id="name" type="text" formControlName="name">
+  <br><br>
+  <label for="email">Email: </label>
+  <input id="email" type="text" formControlName="email">
+  <br><br>
+  <label for="pass">Password: </label>
+  <input id="pass" type="password" formControlName="pass">
+  <br><br>
+  <button type="submit" [disabled]="!registerForm.valid">Registrar</button><br><br>
+  <button (click)="irALogin()">Ir a Login</button>
+</form>

@@ -1,0 +1,14 @@
+<h2>Your Characters/Players</h2>
+<p>CHOOSE YOUR PLAYER</p>
+<table>
+  <tr *ngFor="let character of characters">
+    <!-- <ng-container *ngIf="!producto.privado"> -->
+    <td>Name: {{ character.name }}</td>
+    <td>Level: {{ character.level }}</td>
+    <td><button (click)="play(character._id)">Play</button></td>
+    <td><button (click)="deleteCharacter(character._id)">Delete</button></td>
+    <!-- </ng-container> -->
+  </tr>
+</table>
+<br>
+<button (click)="createCharacter()">Create New</button>

@@ -1,0 +1,11 @@
+<h2>Login</h2>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <label for="email">Email: </label>
+    <input id="email" type="text" formControlName="email">
+    <br><br>
+    <label for="pass">Password: </label>
+    <input id="pass" type="password" formControlName="pass">
+   <br><br>
+    <button type="submit" [disabled]="!userForm.valid">Login</button><br><br>
+    <button (click)="irARegister()">Registrarse</button>
+</form>
