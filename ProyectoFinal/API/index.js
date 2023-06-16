@@ -12,7 +12,7 @@ import itemsRouter from './routes/items.js'
 const app = express()
 
 mongoose.set('strictQuery', true);
-const uri = `mongodb://app:pas@localhost:27017/recuperacion?authMechanism=DEFAULT`;
+const uri = `mongodb://lorenzo:1234@localhost:27017/recuperacion?authMechanism=DEFAULT`;
 connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log('Conectado a la base de datos')

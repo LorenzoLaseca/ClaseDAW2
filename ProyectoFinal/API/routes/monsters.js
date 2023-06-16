@@ -131,7 +131,7 @@ router.put('/:id', async (req, res) => {
     const id = parseInt(req.params.id);
     const monsters = await getMonsters();
     const newMonster = req.body;
-    if (newMonster._id !== id) {
+    if (newMonster._id !== id) {  
         res.send('El id tiene que ser el mismo');
         return;
     }
@@ -169,8 +169,8 @@ router.delete('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     // Reading id from the URL
-    const id = req.params.id;
-    // Remove item from the books array
+    const id = parseInt(req.params.id);
+    // Remove item from the monsters array
     let monsters = await getMonsters();
     monsters = monsters.filter(monster => {
         if (monster._id !== id) {

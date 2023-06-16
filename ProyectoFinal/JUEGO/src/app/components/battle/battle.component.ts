@@ -17,25 +17,24 @@ import { InventoryItem } from 'src/app/models/inventoryitem.model';
   styleUrls: ['./battle.component.css']
 })
 export class BattleComponent implements OnInit {
-  monster: Monster;
+  monster: any;
   character: Character;
   idCharacter: String;
   vidaPersonaje: number;
   fuerzaPersonaje: number;
   random: number;
   resultado: String;
-  item: Item;
+  item: any;
   InventoryItems: InventoryItem[];
   suertePersonaje: number;
   constructor(private router: Router, private fb: FormBuilder, private itemApi: ItemApiService, private inventoryItemApi: InventoryitemApiService, private characterApi: CharacterApiService, private inventoryApi: InventoryitemApiService, private monsterApi: MonsterApiService, private activatedRoute: ActivatedRoute) {
-    this.monster = new Monster;
+
     this.character = new Character;
     this.idCharacter = "";
     this.vidaPersonaje = 0;
     this.fuerzaPersonaje = 0;
     this.random = 0;
     this.resultado = "";
-    this.item = new Item;
     this.InventoryItems = [];
     this.suertePersonaje = 0;
 
@@ -50,14 +49,32 @@ export class BattleComponent implements OnInit {
       this.fuerzaPersonaje = this.character.attack;
       this.suertePersonaje = this.character.luck;
     });
-    this.monsterApi.getMonsterRandomData().subscribe(res => {
-      this.monster = res.data;
-    });
-    this.itemApi.getItemRandomData().subscribe(res => {
-      this.item = res.data;
-    });
+    // this.monsterApi.getMonsterRandomData().subscribe(res => {
+    //   this.monster = res.data;
+    // });
+    // this.itemApi.getItemRandomData().subscribe(res => {
+    //   this.item = res.data;
+    // });
+    this.itemApi.getItemRandomData().subscribe(
+      (data: any) => {
+        this.item = data;
+        console.log(this.item);
+      },
+      (error: any) => {
+        console.error('Error al obtener los datos del item:', error);
+      }
+    );
+    this.monsterApi.getMonsterRandomData().subscribe(
+      (data: any) => {
+        this.monster = data;
+        console.log(this.monster);
+      },
+      (error: any) => {
+        console.error('Error al obtener los datos del monstruo:', error);
+      }
+    );
     this.inventoryApi.getCharacterInventoryData(this.idCharacter).subscribe(res => {
-      this.InventoryItems = res.data;
+      this.InventoryItems = res.data; 
 
     });
 
@@ -111,9 +128,9 @@ export class BattleComponent implements OnInit {
 
     });
   }
-  usarItem(id:string) {
+  usarItem(id: string) {
     this.InventoryItems.forEach(element => {
-      if(element._id==id){
+      if (element._id == id) {
         if (element.name == "Recupera 100% vida") {
           this.vidaPersonaje = this.character.health;
         } else if (element.name == "Recupera 50% vida" && this.vidaPersonaje < this.character.health) {
@@ -132,22 +149,22 @@ export class BattleComponent implements OnInit {
         this.updateInventory(element);
       }
 
-      
+
     });
 
 
   }
-  updateInventory(itemInventory: InventoryItem){
-    if(itemInventory.quantity>1){
+  updateInventory(itemInventory: InventoryItem) {
+    if (itemInventory.quantity > 1) {
       this.inventoryItemApi.putInventoryItemData(itemInventory);
-    }else{
+    } else {
       this.inventoryItemApi.deleteInventoryItemData(itemInventory);
     }
-    
 
-   }
 
-   
+  }
+
+
 
   hasGanadoOPerdido(vidaEnemigo: number, vidaPersonaje: number) {
     if (vidaEnemigo <= 0) {
@@ -158,10 +175,10 @@ export class BattleComponent implements OnInit {
       this.characterApi.putCharacterData(this.character);
       this.InventoryItems.forEach(InventoryItem => {
 
-        if (InventoryItem.itemId === this.item._id) {
+        if (InventoryItem.itemId === this.item._id.toString()) {
           existe = true;
           this.inventoryItemApi.putInventoryItemSumaData(InventoryItem);
-          
+
         }
       });
 
