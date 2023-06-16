@@ -91,15 +91,22 @@ router.post('/', async (req, res) => {
         res.status(400).json({ error: error })
     }
 });*/
+
 router.post('/', async (req, res) => {
     const monster = req.body;
     monster._id = Math.floor(Math.random() * 100000);
     const monsters = await getMonsters();
-    monsters.push(monster);
-    await client.set('monsters', JSON.stringify(monsters));
-    res.send('Monsters is added to the database');
-});
-
+  
+    const exists = monsters.some(element => element.name === monster.name);
+    if (exists) {
+      res.send('Monster with the same name already exists');
+    } else {
+      monsters.push(monster);
+      await client.set('monsters', JSON.stringify(monsters));
+      res.send('Monster is added to the database');
+    }
+  });
+  
 /*
 router.put('/:id', async (req, res) => {
     const id = req.params.id;

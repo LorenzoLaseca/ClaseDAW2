@@ -7,6 +7,7 @@ import usersRouter from './routes/users.js'
 import charactersRouter from './routes/characters.js'
 import monstersRouter from './routes/monsters.js'
 import itemsRouter from './routes/items.js'
+import authRouter from './routes/auth.js'
 
 
 const app = express()
@@ -36,7 +37,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/characters', charactersRouter);
 app.use('/api/monsters', monstersRouter);
 app.use('/api/items', itemsRouter);
-
+app.use('/api/auth', authRouter);
 
 app.get('/', (req, res) => {
     res.json({ mensaje: 'API proyecto final' })

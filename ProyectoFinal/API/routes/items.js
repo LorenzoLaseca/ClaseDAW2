@@ -101,9 +101,14 @@ router.post('/', async (req, res) => {
     const item = req.body;
     item._id = Math.floor(Math.random() * 100000);
     const items = await getItems();
-    items.push(item);
-    await client.set('items', JSON.stringify(items));
-    res.send('Items is added to the database');
+    const exists = items.some(element => element.name === item.name);
+    if (exists) {
+      res.send('Item with the same name already exists');
+    } else {
+      items.push(item);
+      await client.set('items', JSON.stringify(items));
+      res.send('Item is added to the database');
+    }
 });
 
 /*

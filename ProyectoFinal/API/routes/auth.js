@@ -14,9 +14,9 @@ const schemaRegister = Joi.object({
 
 // Esquema del login
 const schemaLogin = Joi.object({
-    email: Joi.string().min(6).max(255).required().email(),
-    pass: Joi.string().min(6).max(1024).required()
-})
+        email: Joi.string().min(6).max(255).required().email(),
+        pass: Joi.string().min(6).max(1024).required()
+    })
 
 // LOGIN
 router.post('/login', async (req, res) => {
@@ -30,13 +30,13 @@ router.post('/login', async (req, res) => {
 
     // Validacion de password en la base de datos
     const validPassword = await bcrypt.compare(req.body.pass, user.pass)
-    if (!validPassword) return res.status(400).json({ error: 'Constraseña invalida' })
+    if (!validPassword) return res.status(400).json({ error: 'Contraseña invalida' })
 
     // Creando token
     const token = jwt.sign({
         name: user.name,
         id: user._id
-    }, process.env.TOKEN_SECRET)
+    },"superPassword")
 
     // Colocando el token en el header y el cuerpo de la respuesta
     res.header('auth-token', token).json({
