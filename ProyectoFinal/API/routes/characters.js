@@ -56,7 +56,7 @@ router.put('/:id', async (req, res) => {
     const characterDatabase = await Character.findOne({ _id: req.params.id });
     if (!characterDatabase) {
         return res.status(400).json(
-            { error: `El character con id ${req.params.id} no existe` }
+            { error: `El inventory item con id ${req.params.id} no existe` }
         )
     }
     characterDatabase.name = req.body.name;
@@ -167,7 +167,6 @@ router.put('/inventory/:id', async (req, res) => {
         res.status(400).json({ error: error });
     }
 });
-
 
 router.delete('/:id/inventory/:itemid', async (req, res) => {
     const itemId = req.params.itemid;
