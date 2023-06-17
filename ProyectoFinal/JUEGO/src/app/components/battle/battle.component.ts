@@ -130,7 +130,7 @@ export class BattleComponent implements OnInit {
   }
   usarItem(id: string) {
     this.InventoryItems.forEach(element => {
-      if (element._id == id) {
+      if (element._id == id ) {
         if (element.name == "Recupera 100% vida") {
           this.vidaPersonaje = this.character.health;
         } else if (element.name == "Recupera 50% vida" && this.vidaPersonaje < this.character.health) {
