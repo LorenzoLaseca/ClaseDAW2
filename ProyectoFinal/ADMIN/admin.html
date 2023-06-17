@@ -1,27 +1,40 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Monstruos</title>
-  <script src="js/admin.js"></script>
-
-</head>
-
-<body>
-  <div id="botones">
-  <button id="monstersButton">Mostrar Monstruos</button>
-  <button id="itemsButton">Mostrar Items</button>
-</div>
-
-  <div id="monstersList">
-  </div>
-  <div id="itemsList">
-  </div>
-  <button id="crearMonster" style="display: none;">Crear Monstruo</button>
-  <br>
-  <button id="crearItem" style="display: none;">Crear Item</button>
-  <br>
- <button id="Volver" style="display: none;">Volver</button>
-  
-</body>
+  <head>
+    <title>Monstruos</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
+    <script src="js/admin.js"></script>
+  </head>
+  <body>
+    <div class="container" id="cAdmin">
+      <div id="botones">
+        <h3>Interfaz admin</h3>
+        <hr>
+        <button id="monstersButton" class="btn btn-dark">
+          Mostrar Monstruos
+        </button>
+        <button id="itemsButton" class="btn btn-dark">Mostrar Items</button>
+      </div>
+      <div id="monstersList"></div>
+      <div id="itemsList"></div>
+      <hr>
+      <button id="crearMonster" class="btn btn-warning" style="display: none">
+        Crear Monstruo
+      </button>
+      <button id="crearItem" class="btn btn-warning" style="display: none">
+        Crear Item
+      </button>
+      <br />
+      <button id="Volver" class="btn btn-danger" style="display: none">
+        Volver
+      </button>
+    </div>
+  </body>
 </html>
-

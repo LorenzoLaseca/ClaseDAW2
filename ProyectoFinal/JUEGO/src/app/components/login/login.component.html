@@ -1,11 +1,54 @@
-<h2>Login</h2>
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-    <label for="email">Email: </label>
-    <input id="email" type="text" formControlName="email">
-    <br><br>
-    <label for="pass">Password: </label>
-    <input id="pass" type="password" formControlName="pass">
-   <br><br>
-    <button type="submit" [disabled]="!userForm.valid">Login</button><br><br>
-    <button (click)="irARegister()">Registrarse</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Concert+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container" id="lAngular">
+      <h2>Login</h2>
+      <hr>
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            id="email"
+            type="text"
+            formControlName="email"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <label for="pass">Password:</label>
+          <input
+            id="pass"
+            type="password"
+            formControlName="pass"
+            class="form-control"
+          />
+        </div>
+        <hr>
+        <button
+          type="submit"
+          [disabled]="!userForm.valid"
+          class="btn btn-info">
+          Login
+        </button>&nbsp;
+        <button (click)="irARegister()" class="btn btn-dark">
+          Registrarse
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

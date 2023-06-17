@@ -8,7 +8,7 @@ import inventoryitem from '../models/inventoryitem.js';
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-    const characterExists = await Character.findOne({ name: req.body.name });
+    const characterExists = await Character.findOne({ name: req.body.name, userId: req.body.userId });
     if (characterExists) {
         return res.status(400).json(
             { error: `El character con el nombre ${req.body.name} ya existe` }

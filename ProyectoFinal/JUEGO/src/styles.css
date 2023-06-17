@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-image: url(https://www.todofondos.net/wp-content/uploads/1600x900-Pixel-Art-Aesthetic-Fondos-de-pantalla-%E2%80%A2-Fondo-de-pantalla-para-usted-1024x576.jpg);
+    background-size: cover;
+    font-family: 'Concert One', cursive;
+  }

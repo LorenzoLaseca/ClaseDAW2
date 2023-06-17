@@ -42,7 +42,9 @@ export class CharacterComponent {
   createCharacter() {
     this.router.navigate([this.idUser + "/characters/createCharacter"])
   }
-  
+  logOut() {
+    this.router.navigate(['']);
+  }
 
 }
 

@@ -17,28 +17,32 @@ import { InventoryItem } from 'src/app/models/inventoryitem.model';
   styleUrls: ['./battle.component.css']
 })
 export class BattleComponent implements OnInit {
-  monster: any;
   character: Character;
+  InventoryItems: InventoryItem[];
   idCharacter: String;
   vidaPersonaje: number;
   fuerzaPersonaje: number;
+  suertePersonaje: number;
   random: number;
   resultado: String;
   item: any;
-  InventoryItems: InventoryItem[];
-  suertePersonaje: number;
+  monster: any;
+  randomImagen:number;
+  itemsDisabled: boolean=false;
+  mostrarInventory: boolean=false;
+  
   constructor(private router: Router, private fb: FormBuilder, private itemApi: ItemApiService, private inventoryItemApi: InventoryitemApiService, private characterApi: CharacterApiService, private inventoryApi: InventoryitemApiService, private monsterApi: MonsterApiService, private activatedRoute: ActivatedRoute) {
-
     this.character = new Character;
+    this.InventoryItems = [];
     this.idCharacter = "";
     this.vidaPersonaje = 0;
     this.fuerzaPersonaje = 0;
+    this.suertePersonaje = 0;
     this.random = 0;
     this.resultado = "";
-    this.InventoryItems = [];
-    this.suertePersonaje = 0;
-
+    this.randomImagen=0;
   }
+
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((parameters: any) => {
       this.idCharacter = parameters.get('idCharacter');
@@ -49,12 +53,12 @@ export class BattleComponent implements OnInit {
       this.fuerzaPersonaje = this.character.attack;
       this.suertePersonaje = this.character.luck;
     });
-    // this.monsterApi.getMonsterRandomData().subscribe(res => {
-    //   this.monster = res.data;
-    // });
-    // this.itemApi.getItemRandomData().subscribe(res => {
-    //   this.item = res.data;
-    // });
+    /*this.monsterApi.getMonsterRandomData().subscribe(res => {
+      this.monster = res.data;
+    });*/
+   /*this.itemApi.getItemRandomData().subscribe(res => {
+      this.item = res.data;
+    });*/
     this.itemApi.getItemRandomData().subscribe(
       (data: any) => {
         this.item = data;
@@ -64,6 +68,7 @@ export class BattleComponent implements OnInit {
         console.error('Error al obtener los datos del item:', error);
       }
     );
+
     this.monsterApi.getMonsterRandomData().subscribe(
       (data: any) => {
         this.monster = data;
@@ -74,12 +79,13 @@ export class BattleComponent implements OnInit {
       }
     );
     this.inventoryApi.getCharacterInventoryData(this.idCharacter).subscribe(res => {
-      this.InventoryItems = res.data; 
-
+      this.InventoryItems = res.data;
     });
-
-
+    this.randomImagen= (Math.floor(Math.random()*14) +1);
   }
+
+
+
   lightAttack() {
     let calclightAttack = 1 + Math.trunc(this.fuerzaPersonaje / 3);
     let precisionLightAttack = 90 + this.suertePersonaje;
@@ -123,48 +129,72 @@ export class BattleComponent implements OnInit {
   }
 
   getInventoryItem() {
-    this.inventoryApi.getCharacterInventoryData(this.idCharacter).subscribe(res => {
-      this.InventoryItems = res.data;
-
-    });
-  }
-  usarItem(id: string) {
-    this.InventoryItems.forEach(element => {
-      if (element._id == id ) {
-        if (element.name == "Recupera 100% vida") {
-          this.vidaPersonaje = this.character.health;
-        } else if (element.name == "Recupera 50% vida" && this.vidaPersonaje < this.character.health) {
-          let vidaRecuperada = this.character.health * 0.50;
-          let nuevaVida = this.vidaPersonaje + vidaRecuperada;
-          this.vidaPersonaje = Math.trunc(Math.min(nuevaVida, this.character.health));
-        } else if (element.name == "Recupera 25% vida" && this.vidaPersonaje < this.character.health) {
-          let vidaRecuperada = this.character.health * 0.25;
-          let nuevaVida = this.vidaPersonaje + vidaRecuperada;
-          this.vidaPersonaje = Math.trunc(Math.min(nuevaVida, this.character.health));
-        } else if (element.name == "Duplica daño siguiente ataque") {
-          this.fuerzaPersonaje *= 2;
-        } else if (element.name == "Duplica suerte siguiente ataque") {
-          this.suertePersonaje *= 2;
-        }
-        this.updateInventory(element);
+      if(this.mostrarInventory){
+        this.mostrarInventory = false;
+        return;
+      } else {
+        this.inventoryApi
+        .getCharacterInventoryData(this.idCharacter)
+        .subscribe((res) => {
+          this.InventoryItems = res.data;
+        });
+        this.mostrarInventory=true;
       }
+    }
+  
+ usarItem(id: string) {
+  const itemIndex = this.InventoryItems.findIndex((element) => element._id === id);
 
+  if (itemIndex !== -1 && !this.InventoryItems[itemIndex].used && !this.itemsDisabled) {
+    const element = this.InventoryItems[itemIndex];
 
+    this.InventoryItems.forEach((item, index) => {
+      if (item._id === id) {
+        if (item.quantity > 1) {
+          item.quantity--; // Restar la cantidad si es mayor a 1
+        } else {
+          this.InventoryItems.splice(index, 1); // Eliminar el elemento del arreglo si la cantidad es 1
+        }
+      }
     });
 
-
-  }
-  updateInventory(itemInventory: InventoryItem) {
-    if (itemInventory.quantity > 1) {
-      this.inventoryItemApi.putInventoryItemData(itemInventory);
-    } else {
-      this.inventoryItemApi.deleteInventoryItemData(itemInventory);
+    // Realizar las acciones correspondientes al usar el item
+    if (element.name === "Recupera 100% vida") {
+      this.vidaPersonaje = this.character.health;
+    } else if (element.name === "Recupera 50% vida" && this.vidaPersonaje < this.character.health) {
+      let vidaRecuperada = this.character.health * 0.50;
+      let nuevaVida = this.vidaPersonaje + vidaRecuperada;
+      this.vidaPersonaje = Math.trunc(Math.min(nuevaVida, this.character.health));
+    } else if (element.name === "Recupera 25% vida" && this.vidaPersonaje < this.character.health) {
+      let vidaRecuperada = this.character.health * 0.25;
+      let nuevaVida = this.vidaPersonaje + vidaRecuperada;
+      this.vidaPersonaje = Math.trunc(Math.min(nuevaVida, this.character.health));
+    } else if (element.name === "Duplica daño siguiente ataque") {
+      this.fuerzaPersonaje *= 2;
+    } else if (element.name === "Duplica suerte siguiente ataque") {
+      this.suertePersonaje *= 2;
     }
 
+    // Marcar el item como usado
+    this.InventoryItems[itemIndex].used = true;
 
+    this.updateInventory(element);
+
+    // Deshabilitar el uso de los items
+    this.itemsDisabled = true;
   }
+}
 
+  
+  updateInventory(itemInventory: InventoryItem){
+    if(itemInventory.quantity>1){
+      this.inventoryItemApi.putInventoryItemData(itemInventory);
+    }else{
+      this.inventoryItemApi.deleteInventoryItemData(itemInventory);
+    }
+    
 
+   }
 
   hasGanadoOPerdido(vidaEnemigo: number, vidaPersonaje: number) {
     if (vidaEnemigo <= 0) {
@@ -174,11 +204,9 @@ export class BattleComponent implements OnInit {
       let existe = false;
       this.characterApi.putCharacterData(this.character);
       this.InventoryItems.forEach(InventoryItem => {
-
         if (InventoryItem.itemId === this.item._id.toString()) {
           existe = true;
           this.inventoryItemApi.putInventoryItemSumaData(InventoryItem);
-
         }
       });
 

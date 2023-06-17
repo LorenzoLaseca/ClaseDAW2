@@ -14,9 +14,9 @@ const schemaRegister = Joi.object({
 
 // Esquema del login
 const schemaLogin = Joi.object({
-        email: Joi.string().min(6).max(255).required().email(),
-        pass: Joi.string().min(6).max(1024).required()
-    })
+    email: Joi.string().min(6).max(255).required().email(),
+    pass: Joi.string().min(6).max(1024).required()
+})
 
 // LOGIN
 router.post('/login', async (req, res) => {
@@ -36,13 +36,12 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign({
         name: user.name,
         id: user._id
-    },"superPassword")
+    }, "superPassword")
 
     // Colocando el token en el header y el cuerpo de la respuesta
-    res.header('auth-token', token).json({
+    res.json({
         error: null,
-        data: { token },
-        message: 'Bienvenido'
+        data: user
     })
 })
 

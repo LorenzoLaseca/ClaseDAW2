@@ -38,35 +38,35 @@ export class InventoryitemApiService {
       )
     return result;
   }
-  putInventoryItemData(body: any) : InventoryItem {
+  putInventoryItemData(body: any): InventoryItem {
     let bodyData = new InventoryItem();
-    bodyData.quantity = body.quantity -1;
-    bodyData._id =body._id;
-    bodyData.characterId=body.characterId
-    bodyData.itemId=body.itemId;
-    bodyData.name=body.name;
-    
-    this.http.put<InventoryItem>(`${"http://localhost:8000/api/characters/inventory/" + body._id}`, bodyData).subscribe();
+    bodyData.quantity = body.quantity - 1;
+    bodyData._id = body._id;
+    bodyData.characterId = body.characterId
+    bodyData.itemId = body.itemId;
+    bodyData.name = body.name;
+
+    this.http.put<InventoryItem>(`${"http://localhost:8000/api/characters/" + body.characterId + "/inventory/" + body.itemId}`, bodyData).subscribe();
     return bodyData;
-    
+
   };
 
-  putInventoryItemSumaData(body: any) : InventoryItem {
+  putInventoryItemSumaData(body: any): InventoryItem {
     let bodyData = new InventoryItem();
     bodyData.quantity = body.quantity + 1;
-    bodyData._id =body._id;
-    bodyData.characterId=body.characterId;
-    bodyData.itemId=body.itemId;
-    bodyData.name=body.name;
-    
+    bodyData._id = body._id;
+    bodyData.characterId = body.characterId;
+    bodyData.itemId = body.itemId;
+    bodyData.name = body.name;
+
     this.http.put<InventoryItem>(`${"http://localhost:8000/api/characters/inventory/" + body._id}`, bodyData).subscribe();
     return bodyData;
-    
+
   };
   deleteInventoryItemData(body: any) {
     this.http.delete(`${"http://localhost:8000/api/characters/" + body.characterId + "/inventory/" + body.itemId}`).subscribe();
   }
-    
+
 
 
 }

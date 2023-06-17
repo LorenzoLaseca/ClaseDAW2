@@ -1,4 +1,0 @@
-- token
-- condiciones: imagenes random, 
-                crear mismo nombre en diferente user,
-                dejar solo usar 1 item y al pulsar el boton.

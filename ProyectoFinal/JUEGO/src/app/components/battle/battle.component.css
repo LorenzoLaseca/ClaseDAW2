@@ -1,6 +1,53 @@
-img
-{
-    width:auto;
-    height: 200px;
-    border: 2px solid black;
+#cBattle {
+  background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/9ae7c1b1-1819-4726-b71a-308443ab2906/d6dug9s-dbc341f9-4390-433f-8e1a-b573ee6354e5.png/v1/fill/w_556,h_371/pokemon_battle_template_by_nostalgia_guy_d6dug9s-fullview.png);
+  background-size: cover;
+  border: black 5px outset;
+  width: 100%;
+  padding: 2%;
+  margin: 0;
+  border-radius: 15px;
+  font-family: "Concert One";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
+
+img {
+    
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 18%;
+  margin-top: 110px;
+  width: auto;
+  height: 200px;
+}
+
+#tableItems{
+background-color: aliceblue;
+border-radius: 15px;
+width: 50%;
+
+}
+
+#sMonster{
+background-color: white;
+width: 20%;
+border-radius: 15px;
+border: red 5px outset;
+
+
+}
+
+#sCharacter{
+background-color: white;
+width: 20%;
+border-radius: 15px;
+border: black 5px outset;
+
+}
+
+
+
+

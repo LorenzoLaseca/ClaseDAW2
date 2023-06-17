@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { AuthApiService } from 'src/app/services/auth/auth-api.service';
 import { UserApiService } from 'src/app/services/user/user-api.service';
 
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -17,27 +16,12 @@ export class RegisterComponent {
     pass: ['', [Validators.required]]
   });
 
-  constructor(private router: Router, private fb: FormBuilder, private userApi: UserApiService, private authApi:AuthApiService) {
+  constructor(private router: Router, private fb: FormBuilder, private userApi: UserApiService,private authApi: AuthApiService) {
 
   }
-//   onSubmit() {
-//   this.authApi.postUserRegisterData(this.registerForm.value).subscribe(
-//     (response) => {
-//       // Aquí puedes manejar la respuesta de la API después de realizar el registro exitoso.
-//       console.log(response);
-//       alert('Se ha registrado correctamente');
-//       this.router.navigate(['']);
-//     },
-//     (error) => {
-//       // Manejar errores de la solicitud de registro.
-//       console.error(error);
-//       alert('Error en el registro');
-//     }
-//   );
-// }
   onSubmit() {
-    this.authApi.postUserRegisterData(this.registerForm.value)
-    alert('Se ha registrado correctamente')
+    this.authApi.postUserRegisterData(this.registerForm.value);
+    //alert('Se ha registrado correctamente')
     this.router.navigate([''])
   }
 

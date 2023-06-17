@@ -1,26 +1,58 @@
-<p>Nombre Jugador: {{character.name}}</p>
-<p>stats: Level: {{character.level}}</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Character Details</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Concert+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container" id="cFight">
+      <h3>Nombre: {{ character.name }} </h3>
+      <hr>
+      <h3>Estadísticas: </h3>
+      <hr>
+      <p>Level: {{ character.level }}</p>
+      <p>Vida: {{ character.health }}</p>
+      <p>Ataque: {{ character.attack }}</p>
+      <p>Suerte: {{ character.luck }}</p>
 
-
-<p>Vida: {{character.health}}</p>
-<p>Ataque: {{character.attack}}</p>
-<p>Suerte: {{character.luck}}</p>
-
-<div>
-  <p>Inventory: </p>
-  <table>
-    <tr *ngFor="let InventoryItem of InventoryItems">
-      <!-- <ng-container *ngIf="!producto.privado"> -->
-      <td>Item: {{ InventoryItem.name }} x{{InventoryItem.quantity}}</td>
-      
-
-      
-      <!-- </ng-container> -->
-    </tr>
-  </table>
-  <br>
-</div>
-<div>
-  <button (click)="startBattle(character._id,character.userId)">Start Battle</button><br><br>
-  <button (click)="goBack(character.userId)">Go Back</button>
-</div>
+      <div>
+        <hr>
+        <h3>Inventario:</h3>
+        <table class="table">
+          <tbody>
+            <tr *ngFor="let inventoryItem of InventoryItems">
+              <td>
+              Item: {{ inventoryItem.name }} x{{ inventoryItem.quantity }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <button
+          class="btn btn-warning"
+          (click)="startBattle(character._id, character.userId)"
+        >
+          START BATTLE!
+        </button>
+        &nbsp;
+        <button class="btn btn-dark" (click)="goBack(character.userId)">
+          Go Back
+        </button>
+      </div>
+    </div>
+    <!-- Importar scripts de Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
