@@ -52,7 +52,7 @@ export class CharacterApiService {
   getCharacterData(idCharacter: any): Observable<CharacterOneResponseService> {
     return this.http.get<CharacterOneResponseService>(`${"http://localhost:8000/api/characters/" + idCharacter}`);
   }
-  putCharacterData(body: Character) : Character {
+  putCharacterData(body: Character): Character {
     let bodyData = new Character();
     bodyData.userId = body.userId;
     bodyData.name = body.name;
@@ -62,6 +62,6 @@ export class CharacterApiService {
     bodyData.luck = body.luck;
     this.http.put<Character>(`${"http://localhost:8000/api/characters/" + body._id}`, bodyData).subscribe();
     return bodyData;
-    
+
   };
 }

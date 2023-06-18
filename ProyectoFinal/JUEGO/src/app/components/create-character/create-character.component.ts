@@ -29,7 +29,7 @@ export class CreateCharacterComponent implements OnInit {
     this.characterApi.postCharacterData(this.createCharacterForm.value, this.idUser, health, attack, luck)
     this.router.navigate([this.idUser + '/characters/'])
 
-    
+
   }
 
   redirectCharacter() {

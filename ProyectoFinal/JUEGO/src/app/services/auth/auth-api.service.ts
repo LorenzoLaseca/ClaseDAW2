@@ -9,7 +9,7 @@ import { User } from 'src/app/models/user.model';
   providedIn: 'root',
 })
 export class AuthApiService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   postUserRegisterData(body: any): User {
     let bodyData = {

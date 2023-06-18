@@ -6,8 +6,8 @@ import { Monster } from 'src/app/models/monster.model';
 })
 export class MonsterResponseService {
 
-  data:  any;
-  
-    constructor() {
-    }
+  data: any;
+
+  constructor() {
+  }
 }

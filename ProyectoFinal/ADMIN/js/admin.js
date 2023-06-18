@@ -1,22 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
   var boton = document.getElementById("Volver");
-  boton.addEventListener("click", function (){
+  boton.addEventListener("click", function () {
     window.location.href = "admin.html";
   });
   var botonCrear = document.getElementById("crearMonster");
-  botonCrear.addEventListener("click", function (){
+  botonCrear.addEventListener("click", function () {
     window.location.href = "registromonsters.html";
   });
   var botonCrear = document.getElementById("crearItem");
-  botonCrear.addEventListener("click", function (){
+  botonCrear.addEventListener("click", function () {
     window.location.href = "registroitems.html";
   });
 
-  document.getElementById("monstersButton").addEventListener("click", function () {
+  document
+    .getElementById("monstersButton")
+    .addEventListener("click", function () {
       document.getElementById("botones").style.display = "none";
       document.getElementById("Volver").style.display = "block";
       document.getElementById("crearMonster").style.display = "block";
-
 
       fetch("http://localhost:8000/api/monsters")
         .then((response) => response.json())
@@ -36,8 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
           document.getElementById("monstersList").style.display = "block";
           document.getElementById("itemsList").style.display = "none";
 
-
-          // Agrega el evento de clic a los botones de eliminar
           var deleteButtons = document.getElementsByClassName("deleteButton");
           Array.from(deleteButtons).forEach((button) => {
             button.addEventListener("click", deleteMonster);
@@ -53,21 +52,19 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("Volver").style.display = "block";
     document.getElementById("crearItem").style.display = "block";
 
-
-
     fetch("http://localhost:8000/api/items")
       .then((response) => response.json())
       .then((data) => {
         var itemsHTML = "<ul>";
-          data.forEach((item) => {
-            itemsHTML +=
-              "<li>" +
-              item.name +
-              ' <button class="deleteButton" data-id="' +
-              item._id +
-              '">x</button></li>';
-          });
-          itemsHTML += "</ul>";
+        data.forEach((item) => {
+          itemsHTML +=
+            "<li>" +
+            item.name +
+            ' <button class="deleteButton" data-id="' +
+            item._id +
+            '">x</button></li>';
+        });
+        itemsHTML += "</ul>";
 
         document.getElementById("itemsList").innerHTML = itemsHTML;
         document.getElementById("itemsList").style.display = "block";
@@ -99,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-
   function deleteItem() {
     var itemId = this.getAttribute("data-id");
 
@@ -115,4 +111,4 @@ document.addEventListener("DOMContentLoaded", function () {
         alert(error);
       });
   }
-});   
+});

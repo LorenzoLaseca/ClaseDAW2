@@ -18,7 +18,7 @@
   <body>
     <div class="container" id="lAngular">
       <h2>Login</h2>
-      <hr>
+      <hr />
       <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="email">Email:</label>
@@ -38,13 +38,10 @@
             class="form-control"
           />
         </div>
-        <hr>
-        <button
-          type="submit"
-          [disabled]="!userForm.valid"
-          class="btn btn-info">
-          Login
-        </button>&nbsp;
+        <hr />
+        <button type="submit" [disabled]="!userForm.valid" class="btn btn-info">
+          Login</button
+        >&nbsp;
         <button (click)="irARegister()" class="btn btn-dark">
           Registrarse
         </button>

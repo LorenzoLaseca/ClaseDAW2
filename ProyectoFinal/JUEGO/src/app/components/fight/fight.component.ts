@@ -15,7 +15,7 @@ export class FightComponent implements OnInit {
   character: Character;
   idCharacter: String;
   InventoryItems: InventoryItem[];
-  constructor(private characterApi: CharacterApiService, private inventoryApi: InventoryitemApiService,private router: Router, private fb: FormBuilder, private activatedRoute: ActivatedRoute) {
+  constructor(private characterApi: CharacterApiService, private inventoryApi: InventoryitemApiService, private router: Router, private fb: FormBuilder, private activatedRoute: ActivatedRoute) {
     this.character = new Character;
     this.idCharacter = "";
     this.InventoryItems = [];
@@ -23,7 +23,7 @@ export class FightComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((parameters: any) => {
       this.idCharacter = parameters.get('idCharacter');
-      
+
     })
     this.characterApi.getCharacterData(this.idCharacter).subscribe(res => {
       this.character = res.data;
@@ -40,5 +40,5 @@ export class FightComponent implements OnInit {
   goBack(userId: String) {
     this.router.navigate([userId + "/characters"]);
   }
-  
+
 }

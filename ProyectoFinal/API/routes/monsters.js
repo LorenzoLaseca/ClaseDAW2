@@ -1,14 +1,12 @@
-import express from 'express';
-import Joi from '@hapi/joi';
-import { createClient } from 'redis';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-
+import express from "express";
+import Joi from "@hapi/joi";
+import { createClient } from "redis";
+import cors from "cors";
+import bodyParser from "body-parser";
 
 const client = createClient({
-    url: 'redis://default:123pass@localhost:5000'
+  url: "redis://default:123pass@localhost:5000",
 });
-
 
 await client.connect();
 
@@ -23,15 +21,15 @@ router.get('/', async (req, res) => {
     });
 })*/
 
-router.get('/', async (req, res) => {
-    res.json(await getMonsters());
+router.get("/", async (req, res) => {
+  res.json(await getMonsters());
 });
 
-router.get('/random', async (req, res) => {
-    //const monsters = await Monster.find();
-    const monsters = await getMonsters();
-    const randomMonster = monsters[Math.floor(Math.random() * monsters.length)];
-    res.json(randomMonster);
+router.get("/random", async (req, res) => {
+  //const monsters = await Monster.find();
+  const monsters = await getMonsters();
+  const randomMonster = monsters[Math.floor(Math.random() * monsters.length)];
+  res.json(randomMonster);
 });
 
 /*
@@ -52,19 +50,19 @@ router.get('/:id', async (req, res) => {
         res.status(400).json({ error: error })
     }
 });*/
-router.get('/:id', async (req, res) => {
-    const id = parseInt(req.params.id);
+router.get("/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
 
-    const monsters = await getMonsters();
-    // Sear ching books for the id
-    for (let monster of monsters) {
-        if (monster._id === id) {
-            res.json(monster);
-            return;
-        }
+  const monsters = await getMonsters();
+  // Sear ching books for the id
+  for (let monster of monsters) {
+    if (monster._id === id) {
+      res.json(monster);
+      return;
     }
-    // Sending 404 when not found something is a good practice
-    res.status(404).send('Monster not found');
+  }
+  // Sending 404 when not found something is a good practice
+  res.status(404).send("Monster not found");
 });
 /*
 router.post('/', async (req, res) => {
@@ -92,21 +90,21 @@ router.post('/', async (req, res) => {
     }
 });*/
 
-router.post('/', async (req, res) => {
-    const monster = req.body;
-    monster._id = Math.floor(Math.random() * 100000);
-    const monsters = await getMonsters();
-  
-    const exists = monsters.some(element => element.name === monster.name);
-    if (exists) {
-      res.send('Monster with the same name already exists');
-    } else {
-      monsters.push(monster);
-      await client.set('monsters', JSON.stringify(monsters));
-      res.send('Monster is added to the database');
-    }
-  });
-  
+router.post("/", async (req, res) => {
+  const monster = req.body;
+  monster._id = Math.floor(Math.random() * 100000);
+  const monsters = await getMonsters();
+
+  const exists = monsters.some((element) => element.name === monster.name);
+  if (exists) {
+    res.send("Monster with the same name already exists");
+  } else {
+    monsters.push(monster);
+    await client.set("monsters", JSON.stringify(monsters));
+    res.send("Monster is added to the database");
+  }
+});
+
 /*
 router.put('/:id', async (req, res) => {
     const id = req.params.id;
@@ -133,25 +131,25 @@ router.put('/:id', async (req, res) => {
     }
 });
 */
-router.put('/:id', async (req, res) => {
-    // Reading id from the URL
-    const id = parseInt(req.params.id);
-    const monsters = await getMonsters();
-    const newMonster = req.body;
-    if (newMonster._id !== id) {  
-        res.send('El id tiene que ser el mismo');
-        return;
+router.put("/:id", async (req, res) => {
+  // Reading id from the URL
+  const id = parseInt(req.params.id);
+  const monsters = await getMonsters();
+  const newMonster = req.body;
+  if (newMonster._id !== id) {
+    res.send("El id tiene que ser el mismo");
+    return;
+  }
+  // Remove item from the books array
+  for (let i = 0; i < monsters.length; i++) {
+    let monster = monsters[i];
+    if (monster._id === id) {
+      monsters[i] = newMonster;
+      await client.set("monsters", JSON.stringify(monsters));
     }
-    // Remove item from the books array
-    for (let i = 0; i < monsters.length; i++) {
-        let monster = monsters[i]
-        if (monster._id === id) {
-            monsters[i] = newMonster;
-            await client.set('monsters', JSON.stringify(monsters));
-        }
-    }
+  }
 
-    res.send('Monster is edited');
+  res.send("Monster is edited");
 });
 
 /*
@@ -174,30 +172,25 @@ router.delete('/:id', async (req, res) => {
     }
 });*/
 
-router.delete('/:id', async (req, res) => {
-    // Reading id from the URL
-    const id = parseInt(req.params.id);
-    // Remove item from the monsters array
-    let monsters = await getMonsters();
-    monsters = monsters.filter(monster => {
-        if (monster._id !== id) {
-            return true;
-        }
-        return false;
-        
-    });
-    //monsters = monsters.filter(monster => monster._id !== id);
-    await client.set('monsters', JSON.stringify(monsters));
-    res.send('Monster is deleted');
+router.delete("/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+  let monsters = await getMonsters();
+  monsters = monsters.filter((monster) => {
+    if (monster._id !== id) {
+      return true;
+    }
+    return false;
+  });
+  await client.set("monsters", JSON.stringify(monsters));
+  res.send("Monster is deleted");
 });
 
-
 async function getMonsters() {
-    let value = await client.get('monsters');
-    if (value === undefined || value === null) {
-        return [];
-    }
-    return JSON.parse(value);
+  let value = await client.get("monsters");
+  if (value === undefined || value === null) {
+    return [];
+  }
+  return JSON.parse(value);
 }
 
-export default router
+export default router;

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create New Character</title>
-  <link
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create New Character</title>
+    <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
@@ -14,19 +14,32 @@
       href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Concert+One&display=swap"
       rel="stylesheet"
     />
-</head>
-<body>
-  <div class="container" id="cCharacter">
-    <h2>Create New Character</h2>
-    <form [formGroup]="createCharacterForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="name">Name:</label>
-        <input id="name" type="text" class="form-control" formControlName="name">
-      </div>
-      <hr>
-      <button type="submit" class="btn btn-info" [disabled]="!createCharacterForm.valid">Create Character</button>&nbsp;
-      <button class="btn btn-dark" (click)="redirectCharacter()">Go Back</button>
-    </form>
-  </div>
-</body>
+  </head>
+  <body>
+    <div class="container" id="cCharacter">
+      <h2>Create New Character</h2>
+      <form [formGroup]="createCharacterForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input
+            id="name"
+            type="text"
+            class="form-control"
+            formControlName="name"
+          />
+        </div>
+        <hr />
+        <button
+          type="submit"
+          class="btn btn-info"
+          [disabled]="!createCharacterForm.valid"
+        >
+          Create Character</button
+        >&nbsp;
+        <button class="btn btn-dark" (click)="redirectCharacter()">
+          Go Back
+        </button>
+      </form>
+    </div>
+  </body>
 </html>

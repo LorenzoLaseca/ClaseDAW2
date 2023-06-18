@@ -14,7 +14,6 @@
 }
 
 img {
-    
   position: absolute;
   top: 0;
   right: 0;
@@ -24,30 +23,25 @@ img {
   height: 200px;
 }
 
-#tableItems{
-background-color: aliceblue;
-border-radius: 15px;
-width: 50%;
-
+#tableItems {
+  background-color: aliceblue;
+  border-radius: 15px;
+  width: 50%;
 }
 
-#sMonster{
-background-color: white;
-width: 20%;
-border-radius: 15px;
-border: red 5px outset;
-
-
+#sMonster {
+  background-color: white;
+  width: 20%;
+  border-radius: 15px;
+  border: red 5px outset;
 }
 
-#sCharacter{
-background-color: white;
-width: 20%;
-border-radius: 15px;
-border: black 5px outset;
-
+#sCharacter {
+  background-color: white;
+  width: 20%;
+  border-radius: 15px;
+  border: black 5px outset;
 }
-
-
-
-
+#audio{
+  display: none;
+}

@@ -5,11 +5,11 @@ import { Item } from 'src/app/models/item.model';
   providedIn: 'root'
 })
 export class ItemResponseService {
-    data: Item;
-  
-    constructor() {
-      this.data = new Item;
-      
-    }
-  
+  data: Item;
+
+  constructor() {
+    this.data = new Item;
+
+  }
+
 }

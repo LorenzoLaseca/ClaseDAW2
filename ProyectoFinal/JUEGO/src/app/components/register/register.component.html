@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Characters/Players</title>
-  <link
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Characters/Players</title>
+    <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
@@ -14,31 +14,50 @@
       href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Concert+One&display=swap"
       rel="stylesheet"
     />
-</head>
-<body>
-
-<div class="container" id="cRegistro">
-  <h2>Crear Cuenta de Juego</h2>
-  <hr>
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input id="name" type="text" formControlName="name" class="form-control">
+  </head>
+  <body>
+    <div class="container" id="cRegistro">
+      <h2>Crear Cuenta de Juego</h2>
+      <hr />
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            id="email"
+            type="text"
+            formControlName="email"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <label for="pass">Password:</label>
+          <input
+            id="pass"
+            type="password"
+            formControlName="pass"
+            class="form-control"
+          />
+        </div>
+        <hr />
+        <button
+          type="submit"
+          [disabled]="!registerForm.valid"
+          class="btn btn-info"
+        >
+          Registrar
+        </button>
+        &nbsp;
+        <button (click)="irALogin()" class="btn btn-dark">Ir a Login</button>
+      </form>
     </div>
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input id="email" type="text" formControlName="email" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="pass">Password:</label>
-      <input id="pass" type="password" formControlName="pass" class="form-control">
-    </div>
-    <hr>
-    <button type="submit" [disabled]="!registerForm.valid" class="btn btn-info">Registrar</button>
-    &nbsp;
-    <button (click)="irALogin()" class="btn btn-dark">Ir a Login</button>
-  </form>
-</div>
-  
-</body>
+  </body>
 </html>

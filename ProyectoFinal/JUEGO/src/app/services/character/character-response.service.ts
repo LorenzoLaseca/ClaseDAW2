@@ -5,9 +5,9 @@ import { Character } from 'src/app/models/character.model';
   providedIn: 'root'
 })
 export class CharacterResponseService {
-    data: Character[];
-  
-    constructor() {
-      this.data = [];
-    }
+  data: Character[];
+
+  constructor() {
+    this.data = [];
   }
+}

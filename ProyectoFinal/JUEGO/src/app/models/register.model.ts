@@ -1,4 +1,4 @@
-export class Register {    
+export class Register {
     error: string;
     data: {
         name: string;
@@ -8,14 +8,14 @@ export class Register {
     };
 
     constructor() {
-        this.error="";
-        this.data= {
-            _id : "",
-            name : "",
-            email :"",
-            pass : "",
+        this.error = "";
+        this.data = {
+            _id: "",
+            name: "",
+            email: "",
+            pass: "",
         }
-       
+
     }
 
 }

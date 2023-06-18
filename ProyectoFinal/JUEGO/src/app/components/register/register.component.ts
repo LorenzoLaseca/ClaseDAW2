@@ -16,7 +16,7 @@ export class RegisterComponent {
     pass: ['', [Validators.required]]
   });
 
-  constructor(private router: Router, private fb: FormBuilder, private userApi: UserApiService,private authApi: AuthApiService) {
+  constructor(private router: Router, private fb: FormBuilder, private userApi: UserApiService, private authApi: AuthApiService) {
 
   }
   onSubmit() {

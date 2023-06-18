@@ -17,23 +17,23 @@
   </head>
   <body>
     <div class="container" id="cFight">
-      <h3>Nombre: {{ character.name }} </h3>
-      <hr>
-      <h3>Estadísticas: </h3>
-      <hr>
+      <h3>Nombre: {{ character.name }}</h3>
+      <hr />
+      <h3>Estadísticas:</h3>
+      <hr />
       <p>Level: {{ character.level }}</p>
       <p>Vida: {{ character.health }}</p>
       <p>Ataque: {{ character.attack }}</p>
       <p>Suerte: {{ character.luck }}</p>
 
       <div>
-        <hr>
+        <hr />
         <h3>Inventario:</h3>
         <table class="table">
           <tbody>
             <tr *ngFor="let inventoryItem of InventoryItems">
               <td>
-              Item: {{ inventoryItem.name }} x{{ inventoryItem.quantity }}
+                Item: {{ inventoryItem.name }} x{{ inventoryItem.quantity }}
               </td>
             </tr>
           </tbody>

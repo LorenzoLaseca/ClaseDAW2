@@ -22,7 +22,7 @@ export class UserApiService {
     bodyData.pass = body.pass;
 
     let result = new User();
-    this.http.post<User>(`${"http://localhost:8000/api/users/"}`,bodyData)
+    this.http.post<User>(`${"http://localhost:8000/api/users/"}`, bodyData)
       .subscribe(
         {
           next(user) {
@@ -37,5 +37,5 @@ export class UserApiService {
         }
       )
     return result;
-  } 
+  }
 }

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ItemApiService {
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
 
   }
   getItemRandomData(): Observable<any> {

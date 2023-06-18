@@ -1,13 +1,13 @@
 #conChar {
-    border: black 5px outset;
-    background-color:whitesmoke;
-    width: 40%;
-    padding: 7%;
-    margin: auto;
-    border-radius: 15px;
-    font-family: 'Concert One', cursive;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+  border: black 5px outset;
+  background-color: whitesmoke;
+  width: 40%;
+  padding: 7%;
+  margin: auto;
+  border-radius: 15px;
+  font-family: "Concert One", cursive;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

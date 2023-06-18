@@ -11,8 +11,8 @@ export class MonsterApiService {
 
   constructor(private http: HttpClient) {
 
-   }
-   getMonsterRandomData(): Observable<any> {
+  }
+  getMonsterRandomData(): Observable<any> {
     return this.http.get<any>(`${"http://localhost:8000/api/monsters/random"}`);
   }
 }

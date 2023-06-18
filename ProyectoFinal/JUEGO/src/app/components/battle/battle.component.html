@@ -42,6 +42,7 @@
         <p>Attack: {{ fuerzaPersonaje }}</p>
         <p>Luck: {{ suertePersonaje }}</p>
       </div>
+      <audio src="/assets/poke.mp3" controls autoplay loop id="audio"></audio>
 
       <br /><br />
       <div class="container" id="buttons">
@@ -67,7 +68,8 @@
           <td>
             <button
               (click)="usarItem(InventoryItem._id)"
-              class="btn btn-warning">
+              class="btn btn-warning"
+            >
               Usar
             </button>
           </td>

@@ -1,11 +1,11 @@
 body {
   background-image: url(https://i.imgur.com/qlgoLVk.png);
-  font-family: 'Concert One', cursive;
+  font-family: "Concert One", cursive;
 }
 
 #cMonsters {
   border: black 5px outset;
-  font-family: 'Concert One', cursive;
+  font-family: "Concert One", cursive;
   margin-top: 30px;
   width: 45%;
   border-radius: 15px;
@@ -24,8 +24,8 @@ h2 {
   width: 40%;
   padding: 8%;
   margin: auto;
-  border-radius: 15px;  
-  font-family: 'Concert One', cursive;
+  border-radius: 15px;
+  font-family: "Concert One", cursive;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -39,7 +39,7 @@ h2 {
   padding: 8%;
   margin: auto;
   border-radius: 15px;
-  font-family: 'Concert One', cursive;
+  font-family: "Concert One", cursive;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -54,7 +54,7 @@ h2 {
   padding: 8%;
   margin: auto;
   border-radius: 15px;
-  font-family: 'Concert One', cursive;
+  font-family: "Concert One", cursive;
   position: absolute;
   top: 50%;
   left: 50%;

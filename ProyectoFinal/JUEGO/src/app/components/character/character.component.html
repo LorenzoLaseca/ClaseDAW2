@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Characters/Players</title>
-  <link
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Characters/Players</title>
+    <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
@@ -14,31 +14,39 @@
       href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Concert+One&display=swap"
       rel="stylesheet"
     />
-</head>
-<body>
-  <div class="container" id="conChar">
-    <h2>Your Characters/Players</h2>
-    <p>CHOOSE YOUR PLAYER</p>
-    <br>
-    <table class="table">
-      <tbody>
-        <tr *ngFor="let character of characters">
-          <td>Name: {{ character.name }}</td>
-          <td>Level: {{ character.level }}</td>
-          <td>
-            <button class="btn btn-warning" (click)="play(character._id)">Play</button>
-          </td>
-          <td>
-            <button class="btn btn-danger" (click)="deleteCharacter(character._id)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <hr>  
-    <br>
-    <button class="btn btn-info" (click)="createCharacter()">Create New</button>&nbsp;
-    <button class="btn btn-dark" (click)="logOut()">Log Out</button>
-  </div>
-</body>
+  </head>
+  <body>
+    <div class="container" id="conChar">
+      <h2>Your Characters/Players</h2>
+      <p>CHOOSE YOUR PLAYER</p>
+      <br />
+      <table class="table">
+        <tbody>
+          <tr *ngFor="let character of characters">
+            <td>Name: {{ character.name }}</td>
+            <td>Level: {{ character.level }}</td>
+            <td>
+              <button class="btn btn-warning" (click)="play(character._id)">
+                Play
+              </button>
+            </td>
+            <td>
+              <button
+                class="btn btn-danger"
+                (click)="deleteCharacter(character._id)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <hr />
+      <br />
+      <button class="btn btn-info" (click)="createCharacter()">
+        Create New</button
+      >&nbsp;
+      <button class="btn btn-dark" (click)="logOut()">Log Out</button>
+    </div>
+  </body>
 </html>
-
