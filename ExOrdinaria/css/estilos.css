@@ -1,0 +1,11 @@
+.contenedor {
+  background-color: rgba(0, 128, 0, 0.67);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 40%;
+  padding: 4%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
